@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 19 - Food Dilivery App</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: grid;
+            place-items: center;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        td,
+        button {
+            padding: 10px 15px;
+        }
+
+        input {
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <table border="1" id='some'>
+
+        <form action="" id="myForm">
+            <tr>
+                <td>
+                    Dish
+                </td>
+                <td>
+                    Order
+                </td>
+                <td>
+                    Quantity
+                </td>
+                <td>
+                    Price per Item
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Biryani
+                </td>
+
+                <td>
+                    <input type="checkbox" oninput="changeColor()">
+                </td>
+                <td>
+                    <input type="number" value="1" min="0">
+                </td>
+                <td>
+                    250
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Chicken Karahi
+                </td>
+                <td>
+                    <input type="checkbox" oninput="changeColor()">
+                </td>
+                <td>
+                    <input type="number" value="1">
+                </td>
+                <td>
+                    850
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Daal maash
+                </td>
+                <td>
+                    <input type="checkbox" oninput="changeColor()">
+                </td>
+                <td>
+                    <input type="number" value="1">
+                </td>
+                <td>
+                    150
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Tikka
+                </td>
+                <td>
+                    <input type="checkbox" oninput="changeColor()">
+                </td>
+                <td>
+                    <input type="number" value="1">
+                </td>
+                <td>
+                    650
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Kheer
+                </td>
+                <td>
+                    <input type="checkbox" oninput="changeColor()">
+                </td>
+                <td>
+                    <input type="number" value="1">
+                </td>
+                <td>
+                    100
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Naan
+                </td>
+                <td>
+                    <input type="checkbox" oninput="changeColor()">
+                </td>
+                <td>
+                    <input type="number" value="1">
+                </td>
+
+                <td>
+                    15
+                </td>
+            </tr>
+        </form>
+
+        <tr>
+            <td colspan="2">
+                Total </b>
+            </td>
+            <td>
+                <button onclick="qauntity()">Get Bill</button>
+            </td>
+            <td>
+                <b id='totalBill'></b>
+            </td>
+        </tr>
+
+    </table>
+
+</body>
+<script>
+
+    // function getBill() {
+
+    //     let total_Bill = 0;
+
+    //     let orderedDishes = document.querySelectorAll('input:checked');
+
+    //     orderedDishes.forEach(function (dish) {
+
+    //         total_Bill += +dish.parentNode.nextElementSibling.innerText;
+
+    //     })
+
+    //     totalBill.innerText = total_Bill;
+
+    //     console.log(orderedDishes)
+    //     qauntity();
+    // }
+    function changeColor() {
+        let red = document.querySelectorAll("input:checked");
+        console.log(red);
+
+        // red.forEach((element) => {
+        //     if(element.target.checked == true) {
+        //         element.parentNode.style.backgroundColor = "skyblue";
+        //     } else if (element.parentNode.style.backgroundColor == "skyblue") {
+        //         element.parentNode.style.backgroundColor = "white";
+        //     }
+        // });
+
+        if (event.target.checked == true) {
+            red.forEach((e) => {
+                event.target.parentNode.parentNode.style.backgroundColor = "skyblue";
+            });
+        } else if (event.target.checked == false) {
+            event.target.parentNode.parentNode.style.backgroundColor = "white";
+        }
+    }
+    function qauntity() {
+        let total_Bill = 0;
+
+        let orderedDishes = document.querySelectorAll('input:checked');
+
+        orderedDishes.forEach(function (dish) {
+            total_Bill += +dish.parentNode.nextElementSibling.firstElementChild.value * +dish.parentNode.nextElementSibling.nextElementSibling.innerText;
+            // +document.querySelectorAll("input:checked")[0].parentNode.nextElementSibling.firstElementChild.value * + +document.querySelectorAll("input:checked")[0].parentNode.nextElementSibling.nextElementSibling.innerText;
+
+
+
+        });
+        console.log(orderedDishes)
+
+        totalBill.innerText = total_Bill;
+        total_Bill = 0;
+        myForm.reset();
+    }
+
+</script>
+
+</html>
